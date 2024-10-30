@@ -1,5 +1,5 @@
-import * as d3 from "./partial-d3";
-import { throttle } from "./utils";
+import * as d3 from "./partial-d3.js";
+import { throttle } from "./utils.js";
 
 // Default configuration
 const defaults = {
@@ -211,10 +211,6 @@ export default class Timeline {
     interruptElement(this.axisTicks);
 
     // Draw axis
-    console.log("draw labels");
-    console.log(this.transition);
-    console.log(xAxisLabel);
-    // this.axisLabels.call(xAxisLabel);
     this.axisLabels
       .transition()
       .duration(this.animationTime)
@@ -223,10 +219,6 @@ export default class Timeline {
     // this.axisLabels.transition(this.transition).call(xAxisLabel);
 
     // Draw axis
-    console.log("draw ticks");
-    console.log(this.transition);
-    console.log(xAxisTicks);
-    // this.axisTicks.call(xAxisTicks);
     this.axisTicks
       .transition()
       .duration(this.animationTime)
@@ -249,6 +241,7 @@ export default class Timeline {
 
       this.x = getScaleTime();
       this.renderData(this.data);
+      this.renderAxis(pivots);
     }, this.dragAndDrop.throttle);
 
     // Draw intervals separation
@@ -280,12 +273,17 @@ export default class Timeline {
             if (!isOverlapping(pivots, lastPivotIndex, event.x, 10)) {
               lastPivotX = event.x;
 
+              console.log(event.x);
+
               lastPivotEl
                 .classed("draggable", true)
                 .attr(
                   "transform",
                   `translate(${lastPivotX}, ${that.positionY - 30})`
                 );
+
+              pivots[lastPivotIndex] = lastPivotX;
+              console.log(pivots[lastPivotIndex]);
 
               if (that.pivotListeners && that.pivotListeners.drag) {
                 that.pivotListeners.drag(event);

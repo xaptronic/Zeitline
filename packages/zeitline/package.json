@@ -2,6 +2,7 @@
   "name": "zeitline",
   "description": "Zeitline",
   "version": "0.1.1",
+  "type": "module",
   "main": "dist/zeitline.bundle.js",
   "module": "src/index.js",
   "directories": {
@@ -40,7 +41,11 @@
     "@babel/preset-env": "^7.25.9",
     "@types/d3": "^7.4.3",
     "babel-loader": "^9.2.1",
+    "chai": "^5.1.2",
+    "chai-spies": "^1.1.0",
     "css-loader": "^7.1.2",
+    "jsdom": "^25.0.1",
+    "mocha": "^10.7.3",
     "style-loader": "^4.0.0",
     "webpack": "^5.95.0",
     "webpack-cli": "^5.1.4"

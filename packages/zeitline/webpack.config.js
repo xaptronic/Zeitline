@@ -1,5 +1,11 @@
-const path = require("path");
-const webpack = require("webpack");
+import path from "path";
+import { fileURLToPath } from "url";
+
+// Get the filename of the current module
+const __filename = fileURLToPath(import.meta.url);
+
+// Get the directory name of the current module
+const __dirname = path.dirname(__filename);
 
 const production = process.env.NODE_ENV === "production"; // eslint-disable-line
 
@@ -37,7 +43,6 @@ const config = {
     minimize: production, // Minimize only in production mode
   },
   mode: production ? "production" : "development",
-  devtool: production ? "source-map" : "eval-source-map",
+  devtool: production ? "source-map" : "inline-source-map",
 };
-
-module.exports = config;
+export default config;
